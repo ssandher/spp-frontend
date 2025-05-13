@@ -34,7 +34,7 @@ const dataTableRef = useRef(null);
 const fetchPlacements = async () => {
     try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("http://localhost:3000/api/placement/getAllPlacementsStudentIds", {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/placement/getAllPlacementsStudentIds`, {
             headers: { Authorization: `Bearer ${token}` },
         });
         setPlacements(response.data);
@@ -47,7 +47,7 @@ const fetchStudents = async () => {
     setLoading(true);
     try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("http://localhost:3000/api/student/getAllStudents", {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/student/getAllStudents`, {
             headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -79,7 +79,7 @@ const fetchStudents = async () => {
 const fetchRounds = async () => {
     try {
         const token = localStorage.getItem("token");
-        const response = await axios.get(`http://localhost:3000/api/interviewRound/getByCompanyId/${companyId}`, {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/interviewRound/getByCompanyId/${companyId}`, {
             headers: { Authorization: `Bearer ${token}` },
         });
         setRounds(response.data);
@@ -92,7 +92,7 @@ const fetchRounds = async () => {
 const fetchDepartments = async () => {
     try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("http://localhost:3000/api/department/getAllDepartments", {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/department/getAllDepartments`, {
             headers: { Authorization: `Bearer ${token}` }
         });
         setDepartments(response.data);
@@ -104,7 +104,7 @@ const fetchDepartments = async () => {
 const fetchSchools = async () => {
     try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("http://localhost:3000/api/school/getAllSchools", {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/school/getAllSchools`, {
             headers: { Authorization: `Bearer ${token}` }
         });
         setSchools(response.data);
@@ -167,7 +167,7 @@ const addStudentsToSelectedRound = async () => {
     try {
         for (const studentId of selectedStudents) {
             const data = { round_id: selectedRound, student_id: studentId };
-            await axios.post(`http://localhost:3000/api/roundParticipation/insert`, data, {
+            await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/roundParticipation/insert`, data, {
                 headers: { Authorization: `Bearer ${token}` },
             });
         }
@@ -256,7 +256,7 @@ const fetchStudentsInRound = async () => {
     setLoading(true);
     try {
         const token = localStorage.getItem("token");
-        const response = await axios.get(`http://localhost:3000/api/roundParticipation/getStudentsDetailsByRoundId/${selectedRoundToDelete}`, {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/roundParticipation/getStudentsDetailsByRoundId/${selectedRoundToDelete}`, {
             headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -313,7 +313,7 @@ const deleteStudentsFromRound = async () => {
 
     try {
         for (const studentId of selectedStudentsToDelete) {
-            await axios.delete(`http://localhost:3000/api/roundParticipation/deleteByRoundAndStudent`, {
+            await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/roundParticipation/deleteByRoundAndStudent`, {
                 headers: { Authorization: `Bearer ${token}` },
                 data: { round_id: selectedRoundToDelete, student_id: studentId }
             });

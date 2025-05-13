@@ -52,7 +52,7 @@ const CompanyRoundTable = ({ companyId }) => {
     const fetchRounds = async () => {
         try {
             const token = localStorage.getItem("token");
-            const response = await axios.get(`http://localhost:3000/api/interviewRound/getByCompanyId/${companyId}`, {
+            const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/interviewRound/getByCompanyId/${companyId}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             // Optionally format dates immediately after fetching if needed elsewhere
@@ -93,14 +93,14 @@ const CompanyRoundTable = ({ companyId }) => {
             const payload = { ...round };
 
             if (isEditing) {
-                await axios.put(`http://localhost:3000/api/interviewRound/update/${payload.round_id}`, payload, {
+                await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/interviewRound/update/${payload.round_id}`, payload, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 toast.current.show({ severity: 'success', summary: 'Success', detail: 'Round updated successfully.', life: 3000 });
             } else {
                  // Ensure company_id is included for new rounds
                 payload.company_id = companyId;
-                await axios.post(`http://localhost:3000/api/interviewRound/insert`, payload, {
+                await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/interviewRound/insert`, payload, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 toast.current.show({ severity: 'success', summary: 'Success', detail: 'New round created successfully.', life: 3000 });
@@ -119,7 +119,7 @@ const CompanyRoundTable = ({ companyId }) => {
     const deleteRound = async (roundId) => {
         try {
             const token = localStorage.getItem("token");
-            await axios.delete(`http://localhost:3000/api/interviewRound/delete/${roundId}`, {
+            await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/interviewRound/delete/${roundId}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             toast.current.show({ severity: 'success', summary: 'Success', detail: 'Round deleted successfully.', life: 3000 });

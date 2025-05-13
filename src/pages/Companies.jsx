@@ -50,7 +50,7 @@ const Companies = () => {
     async function getCompanies() {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-            "http://localhost:3000/api/company/getAllCompanies",
+            `${import.meta.env.VITE_BACKEND_URL}/api/company/getAllCompanies`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`, // Passing the token in the Authorization header
@@ -109,7 +109,7 @@ const Companies = () => {
             if (company.company_id) {
                 // Update existing company
                 const response = await axios.put(
-                    `http://localhost:3000/api/company/updateCompanyById/${company.company_id}`,
+                    `${import.meta.env.VITE_BACKEND_URL}/api/company/updateCompanyById/${company.company_id}`,
                     {
                         company_name: company.company_name,
                         email: company.email,
@@ -130,7 +130,7 @@ const Companies = () => {
                 });
             } else {
                 const response = await axios.post(
-                    "http://localhost:3000/api/company/insertCompany",
+                    `${import.meta.env.VITE_BACKEND_URL}/api/company/insertCompany`,
                     {
                         company_name: company.company_name,
                         email: company.email,
@@ -178,7 +178,7 @@ const Companies = () => {
     const deleteCompany = async () => {
         try {
             const token = await localStorage.getItem("token");
-            const response = await axios.delete(`http://localhost:3000/api/company/deleteCompanyById/${company.company_id}`, {
+            const response = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/company/deleteCompanyById/${company.company_id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`, // Passing the token in the Authorization header
                 },
@@ -230,7 +230,7 @@ const Companies = () => {
             const token = await localStorage.getItem("token");
             for (const company of selectedCompanies) {
 
-                const response = await axios.delete(`http://localhost:3000/api/company/deleteCompanyById/${company.company_id}`, {
+                const response = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/company/deleteCompanyById/${company.company_id}`, {
                     headers: {
                         Authorization: `Bearer ${token}`, // Passing the token in the Authorization header
                     },

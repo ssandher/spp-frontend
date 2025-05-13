@@ -76,7 +76,7 @@ const JobPosting = () => {
     async function getData() {
         const token = localStorage.getItem("token");
         try {
-            const response = await axios.get("http://localhost:3000/api/student/getAllStudents", {
+            const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/student/getAllStudents`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             // console.log("Student API Response:", response.data);
@@ -90,7 +90,7 @@ const JobPosting = () => {
         const token = localStorage.getItem("token");
         try {
             const response = await axios.get(
-                "http://localhost:3000/api/company/getAllCompanies",
+                `${import.meta.env.VITE_BACKEND_URL}/api/company/getAllCompanies`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -107,7 +107,7 @@ const JobPosting = () => {
     async function getDepartments() {
         const token = localStorage.getItem("token");
         try {
-            const response = await axios.get("http://localhost:3000/api/department/getAllDepartments", {
+            const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/department/getAllDepartments`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -125,7 +125,7 @@ const JobPosting = () => {
     async function getSchools() {
         const token = localStorage.getItem("token");
         try {
-            const response = await axios.get("http://localhost:3000/api/school/getAllSchools", {
+            const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/school/getAllSchools`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -319,7 +319,7 @@ const JobPosting = () => {
 
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.post('http://localhost:3000/api/send-email', emailPayload, {
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/send-email`, emailPayload, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },

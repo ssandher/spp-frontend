@@ -26,7 +26,7 @@ const Results = () => {
         }
 
         // Fetch companies
-        axios.get('http://localhost:3000/api/company/getAllCompanies', {
+        axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/company/getAllCompanies`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -39,7 +39,7 @@ const Results = () => {
             });
 
         // Fetch departments
-        axios.get('http://localhost:3000/api/department/getAllDepartments', {
+        axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/department/getAllDepartments`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -52,7 +52,7 @@ const Results = () => {
             });
 
         // Fetch schools
-        axios.get('http://localhost:3000/api/school/getAllSchools', {
+        axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/school/getAllSchools`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -75,7 +75,7 @@ const Results = () => {
                 return;
             }
 
-            axios.get(`http://localhost:3000/api/interviewRound/getByCompanyId/${selectedCompany.company_id}`, {
+            axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/interviewRound/getByCompanyId/${selectedCompany.company_id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -108,7 +108,7 @@ const Results = () => {
             }
             //  Correct API endpoint needed to fetch students for a specific round.
             //  Using the correct endpoint from backend routes:
-            axios.get(`http://localhost:3000/api/roundParticipation/getStudentsByRoundId/${selectedRound.round_id}`, {
+            axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/roundParticipation/getStudentsByRoundId/${selectedRound.round_id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -135,7 +135,7 @@ const Results = () => {
                 console.warn("No token found in localStorage for fetching placed students.");
                 return;
             }
-            axios.get(`http://localhost:3000/api/placement/getPlacementByCompanyId/${selectedCompany.company_id}`, {
+            axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/placement/getPlacementByCompanyId/${selectedCompany.company_id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

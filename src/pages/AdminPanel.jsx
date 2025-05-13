@@ -26,7 +26,7 @@ const AdminPanel = () => {
 
     const fetchAllUsers = async (token) => {
         try {
-            const response = await axios.get('http://localhost:3000/admin/all-users', {
+            const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/admin/all-users`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setUsers(response.data);
@@ -41,7 +41,7 @@ const AdminPanel = () => {
 
     const handleAdminLogin = async () => {
         try {
-            const response = await axios.post('http://localhost:3000/admin/super-admin-login', loginForm);
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/admin/super-admin-login`, loginForm);
             // Only set the token and update the state if the login is successful
             if (response.status === 200) {
                 localStorage.setItem('adminToken', response.data.token);
@@ -60,7 +60,7 @@ const AdminPanel = () => {
 
     const handleAuthorizationChange = async (id, is_authorized) => {
         try {
-            await axios.put(`http://localhost:3000/admin/update-authorization/${id}`, { is_authorized }, {
+            await axios.put(`${import.meta.env.VITE_BACKEND_URL}/admin/update-authorization/${id}`, { is_authorized }, {
                 headers: { Authorization: `Bearer ${adminToken}` }
             });
             setUsers(users.map(user =>

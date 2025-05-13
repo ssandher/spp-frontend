@@ -98,7 +98,7 @@ const PlacedStudentsTable = ({ companyId, companyName }) => {
             const token = getToken();
             // Using getByCompanyId is more efficient if available and implemented correctly
             // const response = await axios.get(`http://localhost:3000/api/placement/getByCompanyId/${company_Id}`, { // Assuming endpoint exists
-            const response = await axios.get("http://localhost:3000/api/placement/getAllPlacements", { // Keep using getAll if getByCompanyId isn't ready
+            const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/placement/getAllPlacements`, { // Keep using getAll if getByCompanyId isn't ready
                 headers: { Authorization: `Bearer ${token}` },
             });
             setPlacements(Array.isArray(response.data) ? response.data : []);
@@ -113,7 +113,7 @@ const PlacedStudentsTable = ({ companyId, companyName }) => {
     async function getAllStudentData() {
         try {
             const token = getToken();
-            const response = await axios.get("http://localhost:3000/api/student/getAllStudents", {
+            const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/student/getAllStudents`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             setStudents(Array.isArray(response.data) ? response.data : []);
@@ -259,7 +259,7 @@ const PlacedStudentsTable = ({ companyId, companyName }) => {
             if (placement.placement_id) {
                 // Update
                 response = await axios.put(
-                    `http://localhost:3000/api/placement/updatePlacementById/${placement.placement_id}`,
+                    `${import.meta.env.VITE_BACKEND_URL}/api/placement/updatePlacementById/${placement.placement_id}`,
                     payload,
                     { headers: { Authorization: `Bearer ${token}` } }
                 );
@@ -267,7 +267,7 @@ const PlacedStudentsTable = ({ companyId, companyName }) => {
             } else {
                 // Insert
                 response = await axios.post(
-                    "http://localhost:3000/api/placement/insertPlacement",
+                    `${import.meta.env.VITE_BACKEND_URL}/api/placement/insertPlacement`,
                     payload,
                     { headers: { Authorization: `Bearer ${token}` } }
                 );
@@ -297,7 +297,7 @@ const PlacedStudentsTable = ({ companyId, companyName }) => {
         try {
             const token = getToken();
             await axios.delete(
-                `http://localhost:3000/api/placement/deletePlacementById/${placement.placement_id}`,
+                `${import.meta.env.VITE_BACKEND_URL}/api/placement/deletePlacementById/${placement.placement_id}`,
                 { headers: { Authorization: `Bearer ${token}` } }
             );
             toast.current.show({ severity: "success", summary: "Successful", detail: "Placement Deleted", life: 3000 });

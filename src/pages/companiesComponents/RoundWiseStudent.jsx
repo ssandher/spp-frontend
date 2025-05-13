@@ -18,7 +18,7 @@ const RoundWiseStudent = ({ companyId }) => {
         try {
             const token = localStorage.getItem("token");
             const response = await axios.get(
-                `http://localhost:3000/api/interviewRound/getByCompanyId/${companyId}`,
+                `${import.meta.env.VITE_BACKEND_URL}/api/interviewRound/getByCompanyId/${companyId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -35,7 +35,7 @@ const RoundWiseStudent = ({ companyId }) => {
         try {
             const token = localStorage.getItem("token");
             const response = await axios.get(
-                `http://localhost:3000/api/roundParticipation/getStudentsByRoundId/${roundId}`,
+                `${import.meta.env.VITE_BACKEND_URL}/api/roundParticipation/getStudentsByRoundId/${roundId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -53,7 +53,7 @@ const RoundWiseStudent = ({ companyId }) => {
         try {
             const token = localStorage.getItem("token");
             const response = await axios.get(
-                `http://localhost:3000/api/interviewRound/getByRoundId/${roundId}`,
+                `${import.meta.env.VITE_BACKEND_URL}/api/interviewRound/getByRoundId/${roundId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -146,7 +146,7 @@ const RoundWiseStudent = ({ companyId }) => {
         try {
             const token = localStorage.getItem("token");
             await axios.post(
-                `http://localhost:3000/api/send-email`,
+                `${import.meta.env.VITE_BACKEND_URL}/api/send-email`,
                 {
                     email: studentEmails,
                     subject: emailSubject,

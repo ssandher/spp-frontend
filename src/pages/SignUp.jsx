@@ -186,7 +186,7 @@ const SignUp = ({ onLogin }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const url = isSignUp ? 'http://localhost:3000/signup' : 'http://localhost:3000/login'; //Explicitly use signup endpoint
+            const url = isSignUp ? `${import.meta.env.VITE_BACKEND_URL}/signup` : `${import.meta.env.VITE_BACKEND_URL}/login`; //Explicitly use signup endpoint
 
             const response = await axios.post(url, formData);
 

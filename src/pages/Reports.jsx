@@ -203,10 +203,10 @@ const PlacementReport = () => {
                     yearRes,
                     deptRes
                 ] = await Promise.all([
-                    axios.get("http://localhost:3000/api/placement/getAllPlacementDetails", { headers }),
-                    axios.get("http://localhost:3000/api/placement/getCoreNonCorePlacements", { headers }),
-                    axios.get("http://localhost:3000/api/placement/getStudentsPlacedYearOfStudyWise", { headers }),
-                    axios.get("http://localhost:3000/api/placement/getPlacedDepartmentWise", { headers })
+                    axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/placement/getAllPlacementDetails`, { headers }),
+                    axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/placement/getCoreNonCorePlacements`, { headers }),
+                    axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/placement/getStudentsPlacedYearOfStudyWise`, { headers }),
+                    axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/placement/getPlacedDepartmentWise`, { headers })
                 ]);
 
                 setAllPlacements(Array.isArray(placementsRes.data) ? placementsRes.data : []);

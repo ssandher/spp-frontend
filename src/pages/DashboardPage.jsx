@@ -28,25 +28,25 @@ const DashboardPage = () => {
       try {
         const token = await localStorage.getItem("token");
         const [placementsRes, studentsRes, departmentsRes, companiesRes] = await Promise.all([
-          axios.get("http://localhost:3000/api/placement/getAllPlacements",
+          axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/placement/getAllPlacements`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
               },
             }),
-          axios.get("http://localhost:3000/api/student/getAllStudents",
+          axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/student/getAllStudents`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
               },
             }),
-          axios.get("http://localhost:3000/api/department/getAllDepartments",
+          axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/department/getAllDepartments`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
               },
             }),
-          axios.get("http://localhost:3000/api/company/getAllCompanies",
+          axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/company/getAllCompanies`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,

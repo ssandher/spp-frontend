@@ -35,7 +35,7 @@ function App() {
     const verifyToken = async (token) => {
         try {
             const response = await axios.post(
-                "http://localhost:3000/verify-token",
+                `${import.meta.env.VITE_BACKEND_URL}/verify-token`,
                 {},
                 {
                     headers: {

@@ -30,7 +30,7 @@ const Communication = () => {
     const fetchDepartments = async () => {
         try {
             const token = localStorage.getItem("token");
-            const response = await axios.get("http://localhost:3000/api/department/getAllDepartments", {
+            const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/department/getAllDepartments`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setDepartments(response.data);
@@ -42,7 +42,7 @@ const Communication = () => {
     const fetchSchools = async () => {
         try {
             const token = localStorage.getItem("token");
-            const response = await axios.get("http://localhost:3000/api/school/getAllSchools", {
+            const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/school/getAllSchools`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setSchools(response.data);
@@ -55,7 +55,7 @@ const Communication = () => {
     const fetchPlacements = async () => {
         try {
             const token = localStorage.getItem("token");
-            const response = await axios.get("http://localhost:3000/api/placement/getAllPlacementsStudentIds", {
+            const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/placement/getAllPlacementsStudentIds`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             setPlacements(response.data);
@@ -82,7 +82,7 @@ const Communication = () => {
     const fetchStudentsByStatus = async (status) => {
         try {
             const token = localStorage.getItem("token");
-            const response = await axios.get("http://localhost:3000/api/student/getAllStudents", { // Use getAllStudents endpoint
+            const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/student/getAllStudents`, { // Use getAllStudents endpoint
                 headers: { Authorization: `Bearer ${token}` },
             });
 
@@ -172,7 +172,7 @@ const Communication = () => {
         try {
             const token = localStorage.getItem("token");
             await axios.post(
-                `http://localhost:3000/api/send-email`,
+                `${import.meta.env.VITE_BACKEND_URL}/api/send-email`,
                 {
                     email: studentEmails,
                     subject: emailSubject,

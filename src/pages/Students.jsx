@@ -77,7 +77,7 @@ const Students = () => {
     async function getData() {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-            "http://localhost:3000/api/student/getAllStudents",
+            `${import.meta.env.VITE_BACKEND_URL}/api/student/getAllStudents`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`, // Passing the token in the Authorization header
@@ -92,7 +92,7 @@ const Students = () => {
     async function getDepartments() {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-            "http://localhost:3000/api/department/getAllDepartments",
+            `${import.meta.env.VITE_BACKEND_URL}/api/department/getAllDepartments`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`, // Passing the token in the Authorization header
@@ -105,7 +105,7 @@ const Students = () => {
     async function getSchools() {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-            "http://localhost:3000/api/school/getAllSchools",
+            `${import.meta.env.VITE_BACKEND_URL}/api/school/getAllSchools`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`, // Passing the token in the Authorization header
@@ -221,7 +221,7 @@ const Students = () => {
             if (student.student_id) {
                 // Update existing student
                 const response = await axios.put(
-                    `http://localhost:3000/api/student/updateStudentById/${student.student_id}`,
+                    `${import.meta.env.VITE_BACKEND_URL}/api/student/updateStudentById/${student.student_id}`,
                     {
                         name: student.name,
                         rollNumber: student.rollNumber,
@@ -261,7 +261,7 @@ const Students = () => {
             } else {
                 // Insert new student
                 const response = await axios.post(
-                    "http://localhost:3000/api/student/insertStudent",
+                    `${import.meta.env.VITE_BACKEND_URL}/api/student/insertStudent`,
                     {
                         name: student.name,
                         rollNumber: student.rollNumber,
@@ -327,7 +327,7 @@ const Students = () => {
     try {
 
         const token = await localStorage.getItem("token");
-        const response = await axios.delete(`http://localhost:3000/api/student/deleteStudentById/${student.student_id}`,{
+        const response = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/student/deleteStudentById/${student.student_id}`,{
             headers: {
                 Authorization: `Bearer ${token}`, // Passing the token in the Authorization header
             },
@@ -380,7 +380,7 @@ const deleteSelectedStudents = async () => {
 
         const token = await localStorage.getItem("token");
         for (const student of selectedStudents) {
-            const response = await axios.delete(`http://localhost:3000/api/student/deleteStudentById/${student.student_id}`,{
+            const response = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/student/deleteStudentById/${student.student_id}`,{
                 headers: {
                     Authorization: `Bearer ${token}`, // Passing the token in the Authorization header
                 },

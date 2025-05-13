@@ -14,7 +14,7 @@ const ForgotPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/forgot-password', { email });
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/forgot-password`, { email });
       setMessage(response.data.message);
       setError('');
       // Store email in local storage for the next component

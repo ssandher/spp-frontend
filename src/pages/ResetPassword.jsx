@@ -29,7 +29,7 @@ const ResetPassword = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:3000/reset-password', { email, password });
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/reset-password`, { email, password });
       setMessage(response.data.message);
       setError('');
       navigate('/auth'); // Redirect to login page

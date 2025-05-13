@@ -20,7 +20,7 @@ const VerifyOTP = () => {
       return;
     }
     try {
-      const response = await axios.post('http://localhost:3000/verify-otp', { email, otp });
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/verify-otp`, { email, otp });
       setMessage(response.data.message);
       setError('');
       //localStorage.removeItem('resetEmail'); // REMOVE THIS LINE
